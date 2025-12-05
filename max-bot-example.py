@@ -343,7 +343,7 @@ async def games_command(message: Message):
     
     await message.reply(
         text=games_text,
-        reply_markup=MaxBotFeatures.create_games_menu()
+        reply_markup=MaxBosFeatures.create_games_menu()
     )
 
 # Обработчик команды /settings
@@ -361,7 +361,7 @@ async def settings_command(message: Message):
     
     await message.reply(
         text=settings_text,
-        reply_markup=MaxBotFeatures.create_settings_menu()
+        reply_markup=MaxBosFeatures.create_settings_menu()
     )
 
 # Обработчик команды /admin
@@ -397,7 +397,7 @@ async def admin_command(message: Message):
     
     await message.reply(
         text=admin_text,
-        reply_markup=MaxBotFeatures.create_admin_menu()
+        reply_markup=MaxBosFeatures.create_admin_menu()
     )
 
 # Обработчики callback-ов
@@ -406,7 +406,7 @@ async def main_menu_callback(callback):
     """Обработчик возврата в главное меню"""
     await callback.message.edit_text(
         text="🏠 Главное меню\n\nВыберите действие:",
-        reply_markup=MaxBotFeatures.create_main_menu()
+        reply_markup=MaxBosFeatures.create_main_menu()
     )
     await callback.answer()
 
@@ -453,7 +453,7 @@ async def settings_callback(callback):
     
     await callback.message.edit_text(
         text=settings_text,
-        reply_markup=MaxBotFeatures.create_settings_menu()
+        reply_markup=MaxBosFeatures.create_settings_menu()
     )
     await callback.answer()
 
@@ -471,7 +471,7 @@ async def games_callback(callback):
     
     await callback.message.edit_text(
         text=games_text,
-        reply_markup=MaxBotFeatures.create_games_menu()
+        reply_markup=MaxBosFeatures.create_games_menu()
     )
     await callback.answer()
 
