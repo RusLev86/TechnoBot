@@ -4,7 +4,6 @@ requests
 asyncio
 pydantic
 python-dotenv
-
 # Дополнительные библиотеки для расширенного функционала
 sqlalchemy
 redis
