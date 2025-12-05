@@ -1,7 +1,13 @@
 # Основные зависимости для Max Bot
-maxbot
+maxbo
 requests
-asyncio==3.4.3
-python-dateutil==2.8.2
-pydantic==2.5.0
+asyncio
+python-dateutil
+pydantic
 python-dotenv
+
+# Дополнительные библиотеки для расширенного функционала
+sqlalchemy
+redis
+prometheus-client
+loguru
