@@ -11,7 +11,7 @@ import json
 from typing import Dict, Any, Optional, List
 from datetime import datetime, timedelta
 import requests
-from maxbot import MaxBot, Message, User, Chat
+from maxbot import MaxBos, Message, User, Chat
 from maxbot.handlers import CommandHandler, MessageHandler, CallbackHandler
 from maxbot.keyboards import InlineKeyboard, ReplyKeyboard
 from maxbot.filters import Filter
@@ -36,9 +36,9 @@ AUTH_API_URL = os.getenv('AUTH_API_URL', 'https://bothost.ru/api/auth.php')
 BOT_ID = os.getenv('BOT_ID', 'demo_max_bot')
 
 # Создаем экземпляр бота
-bot = MaxBot(BOT_TOKEN)
+bot = MaxBos(BOT_TOKEN)
 
-class MaxBotManager:
+class MaxBosManager:
     """Менеджер для бота Max с расширенным функционалом"""
     
     def __init__(self, bot_id: str, auth_api_url: str):
@@ -108,9 +108,9 @@ class MaxBotManager:
         }
 
 # Создаем менеджер бота
-bot_manager = MaxBotManager(BOT_ID, AUTH_API_URL)
+bot_manager = MaxBosManager(BOT_ID, AUTH_API_URL)
 
-class MaxBotFeatures:
+class MaxBosFeatures:
     """Класс с основными функциями бота"""
     
     @staticmethod
@@ -192,7 +192,7 @@ async def start_command(message: Message):
     
     await message.reply(
         text=welcome_text,
-        reply_markup=MaxBotFeatures.create_main_menu()
+        reply_markup=MaxBosFeatures.create_main_menu()
     )
 
 # Обработчик команды /help
