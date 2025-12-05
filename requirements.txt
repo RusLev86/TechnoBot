@@ -1,5 +1,5 @@
 # Основные зависимости для Max Bot
-maxbo
+maxbot
 requests
 asyncio
 pydantic
