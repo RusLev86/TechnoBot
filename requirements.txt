@@ -2,7 +2,6 @@
 maxbo
 requests
 asyncio
-python-dateutil
 pydantic
 python-dotenv
 
