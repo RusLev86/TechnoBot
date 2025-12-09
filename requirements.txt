@@ -1,6 +1,0 @@
-maxbot
-fastapi
-uvicorn
-aiohttp
-python-dotenv
-
