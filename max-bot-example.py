@@ -1,66 +1,23 @@
-"""
-Простейший пример бота на MaxBot без Telegram и без вебхуков.
-Используется интерактивный ввод из консоли.
-"""
+import asyncio
+import logging
 
-from maxbot import MaxBot
+from maxapi import Bot, Dispatcher, F
+from maxapi.types import MessageCreated
 
-# Инициализируем MaxBot с простым диалогом
-bot = MaxBot.inline(
-    """
-    dialog:
-      - condition: message.text.lower() in ['hello', 'hi', 'привет', 'здравствуй']
-        response: |
-          Привет! Я бот на MaxBot.
-          Как дела?
+logging.basicConfig(level=logging.INFO)
 
-      - condition: message.text.lower() in ['good bye', 'bye', 'пока', 'до свидания']
-        response: |
-          До свидания! Удачи!
-
-      - condition: message.text == '/start'
-        response: |
-          Добро пожаловать! Я бот на MaxBot.
-          Напишите "привет" или "hello" для начала.
-
-      - condition: true
-        response: |
-          Извините, я не понял. Попробуйте написать "привет" или "/start".
-    """
-)
+bot = Bot()
+dp = Dispatcher()
 
 
-def main() -> None:
-    """Запуск простого интерактивного бота."""
-    print("🚀 MaxBot запущен. Введите '/exit' для выхода.")
-    while True:
-        try:
-            user_text = input("🧑: ").strip()
-            if user_text.lower() in {"/exit", "/quit"}:
-                print("👋 Выход.")
-                break
-            if not user_text:
-                continue
-
-            message = {"text": user_text}
-            commands = bot.process_message(message)
-
-            if not commands:
-                print("🤖: (нет ответа)")
-                continue
-
-            for command in commands:
-                reply = command.get("text")
-                if reply:
-                    print(f"🤖: {reply}")
-                else:
-                    print(f"🤖: (команда без текста) {command}")
-        except (EOFError, KeyboardInterrupt):
-            print("\n👋 Выход.")
-            break
-        except Exception as exc:
-            print(f"⚠️ Ошибка: {exc}")
+@dp.message_created(F.message.body.text)
+async def echo(event: MessageCreated):
+    await event.message.answer(f"Повторяю за вами: {event.message.body.text}")
 
 
-if __name__ == "__main__":
-    main()
+async def main():
+    await dp.start_polling(bot)
+
+
+if __name__ == '__main__':
+    asyncio.run(main())
